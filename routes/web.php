@@ -27,3 +27,10 @@ Route::get('admin/brands/restore/{id}', ['as' => 'brands/restore', 'uses' => 'Br
 Route::get('admin/brands/force/{id}', ['as' => 'brands/force', 'uses' => 'BrandController@forcedelete']);
 Route::post('admin/brands/paper_bin', ['as' => 'brands/paper_bin', 'uses' => 'BrandController@show']);
 Route::post('admin/brands/update/{id}', ['as'=>'brands/update', 'uses'=>'BrandController@update']);
+
+Route::resource('admin/categories', 'CategoryController');
+Route::get('admin/categories/destroy/{id}', ['as' => 'categories/destroy', 'uses' => 'CategoryController@destroy']);
+Route::get('admin/categories/restore/{id}', ['as' => 'categories/restore', 'uses' => 'CategoryController@restore']);
+Route::get('admin/categories/force/{id}', ['as' => 'categories/force', 'uses' => 'CategoryController@forcedelete']);
+Route::post('admin/categories/paper_bin', ['as' => 'categories/paper_bin', 'uses' => 'CategoryController@show']);
+Route::post('admin/categories/update/{id}', ['as'=>'categories/update', 'uses'=>'CategoryController@update']);
