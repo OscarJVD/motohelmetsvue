@@ -147,7 +147,12 @@ return [
     */
 
     'attributes' => [
-        'name'=> 'Nombre'
-    ],
+        'name'      => 'Nombre',
+        'features'  => 'Descripción',
+        'price'     => 'Precio',
+        'barcode'   => 'Codigo de Barras',
+        'image'     => 'Imagen',
+        'quantity'  => 'Cantidad',
+        ],
 
 ];

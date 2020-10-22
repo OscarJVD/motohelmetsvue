@@ -41,3 +41,10 @@ Route::get('admin/subcategories/restore/{id}', ['as' => 'subcategories/restore',
 Route::get('admin/subcategories/force/{id}', ['as' => 'subcategories/force', 'uses' => 'SubcategoryController@forcedelete']);
 Route::post('admin/subcategories/paper_bin', ['as' => 'subcategories/paper_bin', 'uses' => 'SubcategoryController@show']);
 Route::post('admin/subcategories/update/{id}', ['as'=>'subcategories/update', 'uses'=>'SubcategoryController@update']);
+
+Route::resource('admin/products', 'ProductController');
+Route::get('admin/products/destroy/{id}', ['as' => 'products/destroy', 'uses' => 'ProductController@destroy']);
+Route::get('admin/products/restore/{id}', ['as' => 'products/restore', 'uses' => 'ProductController@restore']);
+Route::get('admin/products/force/{id}', ['as' => 'products/force', 'uses' => 'ProductController@forcedelete']);
+Route::post('admin/products/paper_bin', ['as' => 'products/paper_bin', 'uses' => 'ProductController@show']);
+Route::post('admin/products/update/{id}', ['as'=>'products/update', 'uses'=>'ProductController@update']);

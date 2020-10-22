@@ -25,3 +25,15 @@ function getStatusSubCategoriesArray()
     ];
     return $a;
 }
+
+
+
+function getStatusProductsArray()
+{
+    $a = [
+        '0' => 'Activo',
+        '1' => 'Agotado',
+        '2' => 'Inactivo'
+    ];
+    return $a;
+}
