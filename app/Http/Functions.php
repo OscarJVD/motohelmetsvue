@@ -37,3 +37,13 @@ function getStatusProductsArray()
     ];
     return $a;
 }
+
+
+function getStatusOrdersArray()
+{
+    $a = [
+        '0' => 'Activo',
+        '1' => 'Inactivo'
+    ];
+    return $a;
+}

@@ -1,8 +1,8 @@
 @extends('layouts.admin.admin_layout')
-@section('title', 'Papelera de Marca')
+@section('title', 'Papelera de Orden')
 @section('breadcrumb')
-<li class="breadcrumb-item"><a href="{{route('brands.index')}}">Marcas</a></li>
-<li class="breadcrumb-item active">Papelera de Marcas</li>
+<li class="breadcrumb-item"><a href="{{route('orders.index')}}">Orden</a></li>
+<li class="breadcrumb-item active">Papelera de Ordenes</li>
 @endsection
 @section('content')
 <!-- Main page content-->
@@ -13,7 +13,10 @@
                 <thead>
                     <tr>
                         <th scope="row">Id</th>
-                        <th>Nombre</th>
+                        <th>Fecha</th>
+                        <th>Total</th>
+                        <th>observaciones</th>
+                        <th>Persona</th>
                         <th>Estado</th>
                         <th>Fecha Eliminacion</th>
                         <th>Aciones</th>
@@ -32,20 +35,23 @@
                     </tr>
                 </tfoot> --}}
                 <tbody>
-                    @foreach ($brands as $brand)
+                    @foreach ($orders as $order)
                     <tr>
-                        <td scope="row">{{$brand->id}}</td>
-                        <td>{{$brand->name}}</td>
-                        <td>{{$brand->status}}</td>
-                        <td>{{$brand->deleted_at}}</td>
+                        <td scope="row">{{$order->id}}</td>
+                        <td>{{$order->dateOrder}}</td>
+                        <td>{{$order->total}}</td>
+                        <td>{{$order->observations}}</td>
+                        <td>{{$order->person_id}}</td>
+                        <td>{{$order->status}}</td>
+                        <td>{{$order->deleted_at}}</td>
                         <td>
                             <div class="row">
-                                <a class="btn btn-success ml-3 mr-2" href="{{route('brands/restore', ['id' => $brand->id])}}"
+                                <a class="btn btn-success ml-3 mr-2" href="{{route('orders/restore', ['id' => $order->id])}}"
                                     title="Restablecer">
                                     <i class="fas fa-sync-alt"></i>
                                 </a>
 
-                                <a class="btn btn-danger" href="{{route('brands/force', ['id' => $brand->id])}}" title="Eliminar Permanentemente" onclick="return confirm('Esta seguro de eliminar permanentemente esta Marca')">
+                                <a class="btn btn-danger" href="{{route('orders/force', ['id' => $order->id])}}" title="Eliminar Permanentemente" onclick="return confirm('Esta seguro de eliminar permanentemente esta Orden')">
                                     <i class="fas fa-trash-alt"></i>
                                 </a>
 

@@ -1,8 +1,10 @@
 @extends('layouts.admin.admin_layout')
-@section('title', 'Papelera de Marca')
+@section('title', 'Ordenes')
 @section('breadcrumb')
-<li class="breadcrumb-item"><a href="{{route('brands.index')}}">Marcas</a></li>
-<li class="breadcrumb-item active">Papelera de Marcas</li>
+<li class="breadcrumb-item active">Ordenes</li>
+@endsection
+@section('create')
+<a href="orders/create" class="btn btn-success btn-lg"><i class="fas fa-plus mr-2"></i>Crear</a>
 @endsection
 @section('content')
 <!-- Main page content-->
@@ -13,9 +15,11 @@
                 <thead>
                     <tr>
                         <th scope="row">Id</th>
-                        <th>Nombre</th>
+                        <th>Fecha</th>
+                        <th>Total</th>
+                        <th>observaciones</th>
+                        <th>Persona</th>
                         <th>Estado</th>
-                        <th>Fecha Eliminacion</th>
                         <th>Aciones</th>
                     </tr>
                 </thead>
@@ -32,20 +36,22 @@
                     </tr>
                 </tfoot> --}}
                 <tbody>
-                    @foreach ($brands as $brand)
+                    @foreach ($orders as $order)
                     <tr>
-                        <td scope="row">{{$brand->id}}</td>
-                        <td>{{$brand->name}}</td>
-                        <td>{{$brand->status}}</td>
-                        <td>{{$brand->deleted_at}}</td>
+                        <td scope="row">{{$order->id}}</td>
+                        <td>{{$order->dateOrder}}</td>
+                        <td>{{$order->total}}</td>
+                        <td>{{$order->observations}}</td>
+                        <td>{{$order->person->name}}</td>
+                        <td>{{$order->status}}</td>
                         <td>
                             <div class="row">
-                                <a class="btn btn-success ml-3 mr-2" href="{{route('brands/restore', ['id' => $brand->id])}}"
-                                    title="Restablecer">
-                                    <i class="fas fa-sync-alt"></i>
+                                <a class="btn btn-primary ml-3 mr-2"
+                                    href="{{route('orders.edit', ['order' => $order->id])}}" title="Editar">
+                                    <i class="fas fa-edit"></i>
                                 </a>
-
-                                <a class="btn btn-danger" href="{{route('brands/force', ['id' => $brand->id])}}" title="Eliminar Permanentemente" onclick="return confirm('Esta seguro de eliminar permanentemente esta Marca')">
+                                <a class="btn btn-danger" href="{{route('orders/destroy', ['id' => $order->id])}}"
+                                    title="Mover a la Papelera" onclick="return confirm('Esta seguro de mover esta Orden a la papelera')">
                                     <i class="fas fa-trash-alt"></i>
                                 </a>
 
@@ -53,7 +59,6 @@
                         </td>
                     </tr>
                     @endforeach
-
                 </tbody>
             </table>
         </div>

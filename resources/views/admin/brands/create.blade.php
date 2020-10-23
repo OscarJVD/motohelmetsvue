@@ -1,8 +1,8 @@
 @extends('layouts.admin.admin_layout')
-@section('title', 'Registrar Materia')
+@section('title', 'Registrar Marca')
 @section('breadcrumb')
-<li class="breadcrumb-item"><a href="{{route('brands.index')}}">Materias</a></li>
-<li class="breadcrumb-item active">Registro Materia</li>
+<li class="breadcrumb-item"><a href="{{route('brands.index')}}">Marcas</a></li>
+<li class="breadcrumb-item active">Registro Marca</li>
 @endsection
 @section('content')
 <div class="container mt-n10">

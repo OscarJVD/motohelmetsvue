@@ -48,3 +48,11 @@ Route::get('admin/products/restore/{id}', ['as' => 'products/restore', 'uses' =>
 Route::get('admin/products/force/{id}', ['as' => 'products/force', 'uses' => 'ProductController@forcedelete']);
 Route::post('admin/products/paper_bin', ['as' => 'products/paper_bin', 'uses' => 'ProductController@show']);
 Route::post('admin/products/update/{id}', ['as'=>'products/update', 'uses'=>'ProductController@update']);
+
+
+Route::resource('admin/orders', 'OrderController');
+Route::get('admin/orders/destroy/{id}', ['as' => 'orders/destroy', 'uses' => 'OrderController@destroy']);
+Route::get('admin/orders/restore/{id}', ['as' => 'orders/restore', 'uses' => 'OrderController@restore']);
+Route::get('admin/orders/force/{id}', ['as' => 'orders/force', 'uses' => 'OrderController@forcedelete']);
+Route::post('admin/orders/paper_bin', ['as' => 'orders/paper_bin', 'uses' => 'OrderController@show']);
+Route::post('admin/orders/update/{id}', ['as'=>'orders/update', 'uses'=>'OrderController@update']);
