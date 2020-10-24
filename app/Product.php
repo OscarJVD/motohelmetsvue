@@ -23,4 +23,8 @@ class Product extends Model
     {
         return $this->belongsTo('App\Subcategory');
     }
+    public function promotions()
+    {
+        return $this->hasMany('App\promotions');
+    }
 }

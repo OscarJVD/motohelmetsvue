@@ -13,4 +13,10 @@ class Promotion extends Model
     protected $guarded = ['id'];    
     protected $dates = ['deleted_at'];
     protected $hidden = ['created_at','updated_at'];
+
+     public function Product()
+    {
+        return $this->belongsTo('App\Product');
+    }
 }
+

@@ -56,3 +56,19 @@ Route::get('admin/orders/restore/{id}', ['as' => 'orders/restore', 'uses' => 'Or
 Route::get('admin/orders/force/{id}', ['as' => 'orders/force', 'uses' => 'OrderController@forcedelete']);
 Route::post('admin/orders/paper_bin', ['as' => 'orders/paper_bin', 'uses' => 'OrderController@show']);
 Route::post('admin/orders/update/{id}', ['as'=>'orders/update', 'uses'=>'OrderController@update']);
+
+Route::resource('admin/promotions', 'PromotionController');
+Route::get('admin/promotions/destroy/{id}', ['as' => 'promotions/destroy', 'uses' => 'PromotionController@destroy']);
+Route::get('admin/promotions/restore/{id}', ['as' => 'promotions/restore', 'uses' => 'PromotionController@restore']);
+Route::get('admin/promotions/force/{id}', ['as' => 'promotions/force', 'uses' => 'PromotionController@forcedelete']);
+Route::post('admin/promotions/paper_bin', ['as' => 'promotions/paper_bin', 'uses' => 'PromotionController@show']);
+Route::post('admin/promotions/update/{id}', ['as'=>'promotions/update', 'uses'=>'PromotionController@update']);
+
+
+Route::resource('admin/methodpayments', 'MethodPaymentController');
+Route::get('admin/methodpayments/destroy/{id}', ['as' => 'methodpayments/destroy', 'uses' => 'MethodPaymentController@destroy']);
+Route::get('admin/methodpayments/restore/{id}', ['as' => 'methodpayments/restore', 'uses' => 'MethodPaymentController@restore']);
+Route::get('admin/methodpayments/force/{id}', ['as' => 'methodpayments/force', 'uses' => 'MethodPaymentController@forcedelete']);
+Route::post('admin/methodpayments/paper_bin', ['as' => 'methodpayments/paper_bin', 'uses' => 'MethodPaymentController@show']);
+Route::post('admin/methodpayments/update/{id}', ['as'=>'methodpayments/update', 'uses'=>'MethodPaymentController@update']);
+

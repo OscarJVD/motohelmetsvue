@@ -47,3 +47,21 @@ function getStatusOrdersArray()
     ];
     return $a;
 }
+
+function getStatusPromotionsArray()
+{
+    $a = [
+        '0' => 'Activo',
+        '1' => 'Inactivo'
+    ];
+    return $a;
+}
+
+function getStatusMethodPaymentsArray()
+{
+    $a = [
+        '0' => 'Activo',
+        '1' => 'Inactivo'
+    ];
+    return $a;
+}
