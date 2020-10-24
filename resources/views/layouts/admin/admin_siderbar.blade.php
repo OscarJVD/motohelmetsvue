@@ -3,7 +3,7 @@
         <div class="nav accordion" id="accordionSidenav">
 
             <div class="sidenav-menu-heading"></div>
-            <a class="nav-link" href="charts.html">
+            <a class="nav-link" href="{{route('home')}}">
                 <div class="nav-link-icon"><i class="fas fa-home"></i></div>
                 Inicio
             </a>
@@ -106,7 +106,7 @@
     <div class="sidenav-footer">
         <div class="sidenav-footer-content">
             <div class="sidenav-footer-subtitle">Usuario en sesion:</div>
-            <div class="sidenav-footer-title">Valerie Luna</div>
+            <div class="sidenav-footer-title">{{ Auth::user()->name }}</div>
         </div>
     </div>
 </nav>

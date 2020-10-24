@@ -62,7 +62,7 @@
                                 
                             </div>
                                     <ol class="breadcrumb mb-0 mt-4">
-                                        <li class="breadcrumb-item"><a href="">Inicio</a></li>
+                                        <li class="breadcrumb-item"><a href="{{route('home')}}">Inicio</a></li>
                                         {{-- <li class="breadcrumb-item active">Breadcrumbs</li> --}}
                                         @yield('breadcrumb')
                                     </ol>
@@ -88,7 +88,7 @@
     <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js" crossorigin="anonymous"></script>
     <script src="{{ url('assets\admin\demo\date-range-picker-demo.js') }}"></script>
-
+    
 
 </body>
 
