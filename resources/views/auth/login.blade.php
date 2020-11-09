@@ -36,7 +36,7 @@
                                             <label class="small mb-1">Correo</label>
                                             <input class="form-control py-4 @error('email') is-invalid @enderror"
                                                 value="{{ old('email') }}" name="email" type="email"
-                                                placeholder="Ingrese su Coreo" required>
+                                                placeholder="Ingrese su Correo" required>
                                             @error('email')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -76,7 +76,7 @@
                                     </form>
                                 </div>
                                 <div class="card-footer text-center">
-                                    <div class="small"><a href="auth-register-basic.html">Necesitas una cuenta?
+                                    <div class="small"><a href="{{route('register')}}">Necesitas una cuenta?
                                             Registrate!</a></div>
                                 </div>
                             </div>

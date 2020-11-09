@@ -13,6 +13,8 @@
         crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" rel="stylesheet"
         crossorigin="anonymous">
+    <script src="{{ asset('js/app.js') }}" defer></script>
+
     <link rel="icon" type="image/x-icon" href="{{ url('favicon.ico') }}">
     <script data-search-pseudo-elements="" defer=""
         src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
@@ -21,6 +23,8 @@
 </head>
 <body class="nav-fixed">
     @include('layouts.admin.admin_header')
+    <div id="app">
+
     <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
             @include('layouts.admin.admin_siderbar')
@@ -75,19 +79,20 @@
             @include('layouts.admin.admin_footer')
         </div>
     </div>
+    </div>
+
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" crossorigin="anonymous">
     </script>
     <script src="{{ url('js\admin\scripts.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" crossorigin="anonymous"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" crossorigin="anonymous"></script>
     <script src="{{ url('assets\admin\demo\chart-area-demo.js') }}"></script>
-    <script src="{{ url('assets\admin\demo\chart-bar-demo.js') }}"></script>
+    <script src="{{ url('assets\admin\demo\chart-bar-demo.js') }}"></script> -->
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-    <script src="{{ url('assets\admin\demo\datatables-demo.js') }}"></script>
+    
     <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js" crossorigin="anonymous"></script>
-    <script src="{{ url('assets\admin\demo\date-range-picker-demo.js') }}"></script>
+
     
 
 </body>

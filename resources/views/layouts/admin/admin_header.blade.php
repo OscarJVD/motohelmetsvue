@@ -60,8 +60,8 @@
                 <h6 class="dropdown-header d-flex align-items-center">
                     <img class="dropdown-user-img" src="">
                     <div class="dropdown-user-details">
-                        <div class="dropdown-user-details-name">{{ Auth::user()->name }}</div>
-                        <div class="dropdown-user-details-email">{{ Auth::user()->email }}</div>
+                        <div class="dropdown-user-details-name">{{ isset(Auth::user()->name) ? Auth::user()->name : '' }}</div>
+                        <div class="dropdown-user-details-email">{{ isset(Auth::user()->email) ? Auth::user()->email : '' }}</div>
                     </div>
                 </h6>
                 <div class="dropdown-divider"></div>
@@ -74,6 +74,9 @@
                     <div class="dropdown-item-icon"><i data-feather="log-out"></i></div>
                     Cerrar Sesión
                 </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
             </div>
         </li>
     </ul>

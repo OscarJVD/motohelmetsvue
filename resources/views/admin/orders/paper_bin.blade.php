@@ -16,7 +16,7 @@
                         <th>Fecha</th>
                         <th>Total</th>
                         <th>observaciones</th>
-                        <th>Persona</th>
+                        <th>Cliente</th>
                         <th>Estado</th>
                         <th>Fecha Eliminacion</th>
                         <th>Aciones</th>

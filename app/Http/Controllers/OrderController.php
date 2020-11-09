@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Order;
 use App\Person;
+use App\Product;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -14,28 +15,66 @@ class OrderController extends Controller
     }
     public function create()
     {
+        $products = Product::all();
         $statuses = getStatusOrdersArray();
         $persons=Person::all();
-        return \View::make('admin/orders/create', compact('statuses','persons'));
+        $url= config('app.url').'admin/orders';
+        return \View::make('admin/orders/create', compact('statuses','persons','products','url'));
 
     }
+
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'dateOrder' => 'required|date',
-            'total' => 'required|numeric',
-            'observations' => 'required',
-            'person_id' => 'required',
-            'status' => 'required'
-        ]);
-        $order = new Order;
-        $order->dateOrder = $request->dateOrder;
-        $order->total = $request->total;
-        $order->observations = $request->observations;
-        $order->person_id = $request->person_id;
-        $order->status = $request->status;
-        $order->save();
-        return redirect('admin/orders')->with('info', 'Orden Agregada Satisfatoriamente');     
+        $order = $this->saveOrder($request);
+        $productOrder = $this->saveProductOrder($order, $request->arrProducts, $request->price, $request->quantity);
+        if(!isset($order['error']) && !isset($productOrder['error']) ){
+            $resp = [
+                'success'=> true,
+                'message'=>'inserción Correcta'
+            ];
+            return response()->json($resp);
+        } else{
+            $resp =[
+                'error'=>true,
+                'message'=> 'Error Creando el producto'
+            ];
+            return response()->json($resp);
+        }    
+    }
+
+    public function saveOrder($request)
+    { 
+        try{
+            $order = new Order;
+            $order->dateOrder = $request->dateOrder;
+            $order->total = $request->total;
+            $order->observations = $request->observations;
+            $order->person_id = $request->person_id;
+            $order->status = "Activo";
+            $order->save();
+            return $order;
+        }catch(\Exception $e){
+            $resp = [
+                'error' => true,
+                'message' => 'Error  Insertando el producto('.$e->getMessage().')'
+            ];
+            return $resp;
+        }
+    }
+    public function saveProductOrder($order, $arrProducts, $price, $quantity)
+    {
+        try{
+            foreach($arrProducts as $product){
+                $order->products()->attach($product['id'],['price' => $price, 'quantity'=> $quantity]);
+            }
+            return true;
+        }catch(\Exception $e){
+            $resp = [
+                'error' => true,
+                'message' => 'Error  Insertando el producto('.$e->getMessage().')'
+            ];
+            return $resp;
+        }
     }
 
     public function edit($id)
@@ -47,6 +86,7 @@ class OrderController extends Controller
     }
     public function update($id, Request $request)
     {
+        
         $this->validate($request,[
             'dateOrder' => 'required|date',
             'total' => 'required|numeric',
@@ -60,7 +100,9 @@ class OrderController extends Controller
         $order->observations = $request->observations;
         $order->person_id = $request->person_id;
     	$order->status = $request->status;
-    	$order->save();
+        $order->save();
+        $order->products()->detach($product['id']);
+        $order = $this->saveProductOrder($request);
     	return redirect('admin/orders')->with('info','Orden Actualizada Satisfatoriamente');
     }
 

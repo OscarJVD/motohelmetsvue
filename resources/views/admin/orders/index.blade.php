@@ -1,5 +1,5 @@
 @extends('layouts.admin.admin_layout')
-@section('title', 'Ordenes')
+@section('title', 'Ordenes de venta')
 @section('breadcrumb')
 <li class="breadcrumb-item active">Ordenes</li>
 @endsection
@@ -18,7 +18,8 @@
                         <th>Fecha</th>
                         <th>Total</th>
                         <th>observaciones</th>
-                        <th>Persona</th>
+                        <th>Cliente</th>
+                        <th>Productos</th>
                         <th>Estado</th>
                         <th>Aciones</th>
                     </tr>
@@ -43,6 +44,7 @@
                         <td>{{$order->total}}</td>
                         <td>{{$order->observations}}</td>
                         <td>{{$order->person->name}}</td>
+                            
                         <td>{{$order->status}}</td>
                         <td>
                             <div class="row">

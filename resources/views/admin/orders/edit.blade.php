@@ -26,7 +26,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Persona</label>
+                    <label>Cliente</label>
                     <select name="person_id" class="form-control" required>
                         @foreach($persons as $person)
                         @if($person == $order->person)

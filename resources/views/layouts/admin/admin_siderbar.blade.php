@@ -145,7 +145,7 @@
     <div class="sidenav-footer">
         <div class="sidenav-footer-content">
             <div class="sidenav-footer-subtitle">Usuario en sesion:</div>
-            <div class="sidenav-footer-title">{{ Auth::user()->name }}</div>
+            <div class="sidenav-footer-title">{{ isset(Auth::user()->name) ? Auth::user()->name : '' }}</div>
         </div>
     </div>
 </nav>

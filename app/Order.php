@@ -18,4 +18,9 @@ class Order extends Model
     {
         return $this->belongsTo('App\Person');
     }
+    //relacion muchos a muchos entre order->product
+     public function products()
+     {
+         return $this->belongsToMany('App\Product');
+     }
 }

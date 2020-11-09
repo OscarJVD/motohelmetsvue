@@ -29,7 +29,7 @@ class CreateRelationships extends Migration
             $table->foreign('product_id')->references('id')->on('products')->onUpdate('cascade');
         });
 
-        Schema::table('detail_order', function ($table)
+        Schema::table('order_product', function ($table)
         {
             $table->foreign('product_id')->references('id')->on('products')->onUpdate('cascade');
             $table->foreign('order_id')->references('id')->on('orders')->onUpdate('cascade');
@@ -66,3 +66,16 @@ class CreateRelationships extends Migration
         Schema::dropIfExists('relationships');
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
