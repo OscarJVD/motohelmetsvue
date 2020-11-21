@@ -26,7 +26,7 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         $order = $this->saveOrder($request);
-        $productOrder = $this->saveProductOrder($order, $request->arrProducts, $request->price, $request->quantity);
+        $productOrder = $this->saveProductOrder($order, $request->arrProducts, $request->price); 
         if(!isset($order['error']) && !isset($productOrder['error']) ){
             $resp = [
                 'success'=> true,
@@ -61,13 +61,14 @@ class OrderController extends Controller
             return $resp;
         }
     }
-    public function saveProductOrder($order, $arrProducts, $price, $quantity)
+    public function saveProductOrder($order, $arrProducts, $price)
     {
         try{
-            foreach($arrProducts as $product){
-                $order->products()->attach($product['id'],['price' => $price, 'quantity'=> $quantity]);
-            }
-            return true;
+            // dd($arrProducts[0]['quantity_to_buy'], $arrProducts[0]);
+            foreach($arrProducts as $product)
+                $order->products()->attach($product['id'],['price' => $price, 'quantity' => $arrProducts[0]['quantity_to_buy']]);
+            
+            return true; //Listo juli necesitas cambiar los nombres como te dije y sale
         }catch(\Exception $e){
             $resp = [
                 'error' => true,

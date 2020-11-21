@@ -60,45 +60,72 @@
           />
         </div>
 
-        <div class="form-group">
-          <label>Quantity</label>
-          <input
-            type="number"
-            name="quantity"
-            class="form-control"
-            required
-            v-model="quantity"
-          />
-        </div>
-
         <div class="form-group row">
           <div class="col-md-10">
             <label>Productos</label>
-            <select v-model="productSelected" class="form-control" @change="addProduct()">
+            <select
+              v-model="productSelected"
+              class="form-control"
+              @change="addProduct()"
+            >
               <option value="">Seleccione...</option>
               <option v-for="(product, index) in products" :value="product">
                 {{ product.name }}
               </option>
             </select>
           </div>
-          <!-- <div class="col-md-2 mt-4">
-            <button class="btn btn-primary" @click="addProduct()">+</button>
-          </div> -->
         </div>
-        <div class="form-group row">
-          <div
-            class="col-md-6 text-center row"
-            v-for="(product, index) in arrProducts"
+        <div class="form-group row justify-content-center">
+          <table
+            class="table table-responsive table-light col-6 col-sm-12 col-md-8 col-lg-6 justify-content-center"
           >
-            <div class="col-md-8 mt-2">
-              <span>{{ product.name }}</span>
-            </div>
-            <div class="col-md-4 mt-2">
-              <button class="btn btn-danger" @click="removeProduct(index)">
-                -
-              </button>
-            </div>
-          </div>
+            <!-- <div class="col-md-12 mt-2"> -->
+            <thead>
+              <tr>
+                <th scope="col">Código</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Eliminar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- :key="product.value" -->
+              <tr v-for="(product, index) in arrProducts">
+                <th scope="row">{{ product.barcode }}</th>
+                <td>{{ product.name }}</td>
+                <td>
+                  <!-- Necesitamos hacer un for que no interfiera con este -->
+                  <!-- <div > -->
+                  <input
+                    v-model="product.quantity_to_buy"
+                    type="text"
+                    class="form-control quantity"
+                    required
+                    placeholder="Ingrese cantidad"
+                  />
+                  <!-- <input v-model="product.value" /> -->
+                  <!-- {{ (flag = true) }} -->
+                  <!-- v-for="quantity in quantities" :key="quantity.value" -->
+                  <!-- name="quantity" -->
+                  <!-- key="product.quantity" -->
+                  <!-- </div> -->
+                </td>
+                <td>${{ product.price }}</td>
+                <td>
+                  <div class="col-md-4 mt-2">
+                    <button
+                      class="btn btn-danger"
+                      @click="removeProduct(index)"
+                    >
+                      -
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+            <!-- </div> -->
+          </table>
         </div>
 
         <div class="d-flex justify-content-center">
@@ -123,8 +150,9 @@ export default {
       observations: "",
       personSelected: "",
       price: "",
-      quantity: "",
       productSelected: "",
+      // quantities: [],
+      // flag: false,
       arrProducts: [],
       showError: false,
     };
@@ -145,6 +173,39 @@ export default {
   },
   methods: {
     addProduct: function () {
+      // Cantidad input field unique value
+      console.log(this.arrProducts[0]);
+      if (this.flag == true) {
+        this.arrProducts.push({ quantity_to_buy: "" });
+        // this.quantities.push(this.arrProducts)
+      }
+
+      // console.log(this.quantities);
+
+      // this.flag = true;
+      console.log(this.arrProducts);
+      console.log(this.arrProducts[0]); 
+      // let quantities = [];
+      // this.quantities.push({ value: "" });
+      // console.log(this.quantities);
+      // if(this.flag != true)
+      // this.arrProducts.push(this.quantities);
+      // this.flag = true;
+
+      // for (let i = 0; i < this.arrProducts.length; i++) {
+      //   console.log(this.arrProducts[i]);
+      //   console.log(this.arrProducts[i][0]);
+      //   console.log(this.arrProducts[i].value);
+      // }
+      // // console.log(this.arrProducts);
+      // console.log(`PRUEBA: ` + this.arrProducts[0]);
+      // console.log(`PRUEBA: ` + this.arrProducts[0][0]);
+      // console.log(`PRUEBA: ` + this.arrProducts[0].value);
+      // console.log(this.arrProducts[0][0]);
+      // console.log(this.arrProducts[0][value]);
+      // console.log(this.arrProducts[quantities]);
+      // console.log(this.arrProducts.quantities);
+
       if (this.productSelected !== "") {
         if (typeof this.existProduct(this.productSelected.id) === "undefined") {
           this.arrProducts.push(this.productSelected);
@@ -166,6 +227,19 @@ export default {
       this.arrProducts.splice(index, 1);
     },
     submitForm: function () {
+      // let arrQuantities = "";
+
+      // for (let i = 0; i < this.arrProducts.length; i++) {
+      //   document.querySelectorAll(".quantity").forEach((p, i) => {
+
+      //     this.arrProducts['quantities'] = p.value;
+      //     // console.log(p[i].value);
+      //     // arrQuantities.push(p[i].value);
+      //   });
+      // // }
+      // // console.log(arrQuantities);
+      // console.log(this.arrProducts);
+      // console.log(document.querySelectorAll('quantity'));
 
       if (
         this.personSelected != "" &&
@@ -203,8 +277,6 @@ export default {
       }
     },
   },
-  mounted() {
-
-  },
+  mounted() {},
 };
 </script>
